@@ -52,9 +52,10 @@ test_data=u.preprocessing(binstest)
 mse=u.training(train_data,test_data)
 
 
-percentiles=[90,95,99,99.9]
+percentiles=[90, 95, 99, 99.9]
 if m not in percentiles:
     bisect.insort(percentiles, m)
+    
 toplot=[]
 for a in percentiles:
     anom, anomal=u.threshold_for_anom_2(mse,df_test, modeb, a)

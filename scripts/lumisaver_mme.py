@@ -44,21 +44,16 @@ firsttest=int(args['firstlumifortest'])
 lasttest=int(args['lastlumifortest'])
 m=float(args['threshold'])
 
-
-
 traindataset='runs/'+str(args['csvfilenametraining'])
 testdataset='runs/'+str(args['csvfilenametesting'])
 
 keys_train=u.readkeys(traindataset)
 keys_test=u.readkeys(testdataset)
 
-
 if keyfromuser:
     keys=[keyfromuser]
 else:
     keys = keys_train.intersection(keys_test)
-    
-
 
 for key in keys:
     df_train, binstrain=u.loadcsv(traindataset,key,mode,firsttrain,lasttrain)
@@ -69,10 +64,10 @@ for key in keys:
     print('\n--> Monitor element: ',key)
     mse=u.training(train_data,test_data)
 
-
-    percentiles=[90.,95.,99.,99.9]
+    percentiles=[90., 95., 99., 99.9]
     if m not in percentiles:
         bisect.insort(percentiles, m)
+        
     toplot=[]
     for a in percentiles:
         anom, anomal=u.threshold_for_anom_2(mse,df_test, modeb, a)
