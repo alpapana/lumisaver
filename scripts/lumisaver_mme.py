@@ -69,12 +69,14 @@ for key in keys:
         bisect.insort(percentiles, m)
         
     toplot=[]
-    for a in percentiles:
-        anom, anomal=u.threshold_for_anom_2(mse,df_test, modeb, a)
-        print('\n Possible anomalies (',a,'th percentile) in lumisections: ',anomal)
-        if anom.size:
-            toplot.append(anom[0])
-
+    with open('logs/log_'+str(testdataset)[-10:-4]+'_'+str(key)+'.txt', 'w') as f:
+        sys.stdout = f
+        for a in percentiles:
+            anom, anomal=u.threshold_for_anom_2(mse,df_test, modeb, a)
+            print('\n Possible anomalies (',a,'th percentile) in lumisections: ',anomal)
+            if anom.size:
+                toplot.append(anom[0])
+            
     figure(figsize=(15, 10), dpi=80)
     for i in range(len(toplot)):
         plt.axvline(x=toplot[i],color=plt.cm.hsv(i/len(percentiles)), linewidth=2,linestyle='--',label='1st anomaly at '+str(percentiles[i])+'th percentile')
@@ -88,3 +90,6 @@ for key in keys:
     #plt.figtext(0.13,0.887,'MSE',fontsize=18,fontweight='bold')
     plt.title('Run '+str(testdataset)[-10:-4]+'  Monitor element: '+str(key),loc='left',fontsize=18,fontstyle='italic')
     plt.savefig('plots/mme_plot_'+str(testdataset)[-10:-4]+'_'+str(key)+'.pdf')
+sys.stdout = sys.__stdout__
+print("\n--> Results are in /logs and /plots folders")
+    
