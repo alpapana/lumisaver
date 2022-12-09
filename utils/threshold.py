@@ -13,7 +13,7 @@ def threshold_for_anom(data: np.array, m = 2.) -> list:
 
 
 
-def threshold_for_anom_2(data: np.array, df_test: pd.DataFrame, modeb, m = 99) -> tuple(int,list):
+def threshold_for_anom_2(data: np.array, df_test: pd.DataFrame, modeb, m = 99):
     d = np.percentile(data, m)
     anom=np.where(data>d)[0]
     anomal=[]
