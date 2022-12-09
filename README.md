@@ -56,7 +56,7 @@ The scripts used for the experiment in the paper are in the `scripts` folder.
 	python ./scripts/lumisaver_mme.py -a runs/run_315488.csv -b 0 -c runs/run360950.csv -d 1 -f 40 -g 750 -k 99.9
 	```
 
-* `lumisaver.py` is a simpler version of the script, allowing to test only on one monitor element, which is therefor required
+* `lumisaver.py` is a simpler version of the script, allowing to test only on one monitor element, which is therefore required
 
 	```
 	python ./scripts/lumisaver_mme.py -a runs/run_315488.csv -b 0 -c runs/run360950.csv -d 1 -e METSig -f 40 -g 750 -k 99.9
