@@ -1,4 +1,4 @@
-# Automated per-LS anomaly detection
+# Automated per-LS anomaly detection tool
 
 This repository contains the code necessary to perform a per-LS automated anomaly detection via Autoencoders.
 
