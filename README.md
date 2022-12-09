@@ -1,5 +1,6 @@
 # lumisaver
 
+run mme_lumisaver with:
 
 python ./scripts/lumisaver_mme.py -a run_315488.csv -b 0  -c run_315488.csv -d 0 -e METSig -f 40 -g 750
 
