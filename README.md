@@ -48,7 +48,7 @@ The `utils` directory stores all the files necessary to load, preprocess and pro
 
 ## Scripts
 
-The scripts used for the experiment in the paper are in the `scripts` folder.
+The scripts used for the anomaly detection of time-series of histograms are in the `scripts` folder.
 
 * `lumisaver_mme.py` is the main script, allowing multi-monitor element analysis. An example of usage is
 
