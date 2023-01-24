@@ -36,8 +36,9 @@ def threshold_for_anom_moving_average(data: np.array, df_test: pd.DataFrame, mod
     if modeb==0:
         for i in range(anom.shape[0]):
             anomal.append(df_test[1][anom[i]])
-    elif modeb==1:
+    elif (modeb==1 or modeb==2):
         for i in range(anom.shape[0]):
             anomal.append(df_test[8][anom[i]])
+
     return anom, anomal
 

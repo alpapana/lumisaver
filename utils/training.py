@@ -36,7 +36,8 @@ def training(train_data,test_data):
     model.fit(training, training, batch_size = batch_size, epochs = epochs,
               validation_data=(training,training),shuffle=False, verbose = 0)
 
-    print('\n--> Ending training')
+    print('\n--> Training completed')
+    print('\n--> Starting testing')
     test_x_predictions=model.predict(test_data)
 
     mse_dense = tf.math.reduce_mean(tf.math.pow(test_data[:,:] - test_x_predictions[:,:], 2), axis = 1)
