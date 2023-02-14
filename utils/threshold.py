@@ -28,17 +28,17 @@ def threshold_for_anom_2(data: np.array, df_test: pd.DataFrame, modeb, m = 99):
             anomal.append(df_test[8][anom[i]])
     return anom, anomal
 
-def threshold_for_anom_moving_average(data: np.array, df_test: pd.DataFrame, modeb, m = 99):
+def threshold_for_anom_moving_average(data: np.array, df_test: pd.DataFrame, modeb, zeros, m = 99):
     data=moving_average(data, n=5)
     d = np.percentile(data, m)
     anom=np.where(data>d)[0]
     anomal=[]
     if modeb==0:
         for i in range(anom.shape[0]):
-            anomal.append(df_test[1][anom[i]])
+            anomal.append(df_test[1][anom[i]+zeros])
     elif (modeb==1 or modeb==2):
         for i in range(anom.shape[0]):
-            anomal.append(df_test[8][anom[i]])
+            anomal.append(df_test[8][anom[i]+zeros])
 
     return anom, anomal
 

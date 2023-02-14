@@ -113,12 +113,11 @@ for key in keys:
         sys.stdout = f
         print('\n--> Monitor element:', key)
         for a in percentiles:
-            anom, anomal=u.threshold_for_anom_moving_average(mse,df_test, modeb, a)
-            print('eccole:',anomal)
+            anom, anomal=u.threshold_for_anom_moving_average(mse,df_test, modeb, zeros, a)
             anomalies[key].extend(anomal)
             print('\n Possible anomalies (',a,'th percentile) in lumisections: ',anomal)
             if anom.size:
-                toplot.append(anom[0])
+                toplot.append(anomal[0])
     
     globanomalies.extend(anomalies[key])
     figure(figsize=(15, 10), dpi=80)
@@ -126,9 +125,10 @@ for key in keys:
         plt.axvline(x=toplot[i],color=plt.cm.hsv(i/len(percentiles)), linewidth=2,linestyle='--',label='1st anomaly at '+str(percentiles[i])+'th percentile')
     
 
-    plt.plot(mse,linewidth=2)
+    plt.plot(df_test[8][zeros+1:],mse,linewidth=2) #df_test[8][zeros+1:]
+    locs=[]
     locs, labels = plt.xticks()
-    locs=list(locs)+list(toplot)
+    locs=df_test[8][0::5] #+list(anomalies[key])
     plt.xticks(locs,fontsize=7,rotation='vertical')
     plt.legend(fontsize=14)
     #plt.xticks(fontsize=14)
