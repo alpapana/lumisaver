@@ -122,21 +122,23 @@ for key in keys:
     globanomalies.extend(anomalies[key])
     figure(figsize=(15, 10), dpi=80)
     for i in range(len(toplot)):
-        plt.axvline(x=toplot[i],color=plt.cm.hsv(i/len(percentiles)), linewidth=2,linestyle='--',label='1st anomaly at '+str(percentiles[i])+'th percentile')
+        plt.axvline(x=toplot[i],color=plt.cm.hsv(i/len(percentiles)), linewidth=2,linestyle='--',label='1st anom. at '+str(percentiles[i])+'th %, LS '+str(toplot[i]))
     
 
-    plt.plot(df_test[8][zeros+1:],mse,linewidth=2) #df_test[8][zeros+1:]
-    locs=[]
-    locs, labels = plt.xticks()
-    locs=df_test[8][0::5] #+list(anomalies[key])
-    plt.xticks(locs,fontsize=7,rotation='vertical')
+    #plt.plot(df_test[8][zeros+1:],mse,linewidth=2) #df_test[8][zeros+1:]
+    plt.plot(df_test[8][zeros:],mse,linewidth=2) #df_test[8][zeros+1:]
+    #locs=[]
+    #locs, labels = plt.xticks()
+    #locs=df_test[8][0::5] #+list(anomalies[key])
+    #plt.xticks(locs,fontsize=7,rotation='vertical')
     plt.legend(fontsize=14)
     #plt.xticks(fontsize=14)
-    plt.xlabel("MSE",loc='right',fontsize=18)
-    plt.ylabel("a.u.",loc='top',fontsize=18)
+    plt.xlabel("LS",loc='right',fontsize=20)
+    plt.ylabel("Reconstrucion loss",loc='top',fontsize=20)
     plt.yticks(fontsize=14)
     #plt.figtext(0.13,0.887,'MSE',fontsize=18,fontweight='bold')
     plt.title('Run '+str(testdataset)[-10:-4]+'  Monitor element: '+str(key),loc='left',fontsize=18,fontstyle='italic')
+    plt.grid(linewidth = 1,linestyle = '-')
     plt.savefig('plots/mme_plot_'+str(testdataset)[-10:-4]+'_'+str(key)+'.pdf')
    
 with open('logs/log_'+str(testdataset)[-10:-4]+'.txt', 'a') as f:
